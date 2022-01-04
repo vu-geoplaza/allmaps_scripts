@@ -1,0 +1,90 @@
+{
+    "@context": [
+        "http://geojson.org/geojson-ld/geojson-context.jsonld",
+        "http://iiif.io/api/presentation/3/context.json"
+    ],
+    "body": {
+        "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        4.481746153196309,
+                        52.1610229725855
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "pixelCoords": [
+                        1209,
+                        3113
+                    ]
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        4.483591512998555,
+                        52.15478323076795
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "pixelCoords": [
+                        2229,
+                        5577
+                    ]
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        4.503547148069356,
+                        52.15599438830975
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "pixelCoords": [
+                        6811,
+                        4327
+                    ]
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        4.491058782896017,
+                        52.15944337380503
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "pixelCoords": [
+                        3763,
+                        3403
+                    ]
+                },
+                "type": "Feature"
+            }
+        ],
+        "type": "featureCollection"
+    },
+    "target": {
+        "selector": {
+            "type": "SvgSelector",
+            "value": "<svg width=\"8023\" height=\"6816\"><polygon points=\"8023,0 8023,6816 0,6816 0,0 8023,0\" /></svg>"
+        },
+        "service": [
+            {
+                "@id": "https://vu.contentdm.oclc.org/digital/iiif/krt/1824",
+                "profile": "http://iiif.io/api/image/2/level2.json",
+                "type": "ImageService2"
+            }
+        ],
+        "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/1824"
+    },
+    "type": "Annotation"
+}

@@ -26,6 +26,13 @@ def getGeoReference(id):
         data = json.loads(response.content)
     return data
 
+def getDimensions(iiif_url):
+    data = False
+    response = requests.get(iiif_url, headers={})
+    print(response.status_code)
+    if response.status_code == 200:
+        data = json.loads(response.content)
+    return data
 
 fin = open('cdm_export.json', 'r')
 d = json.load(fin)
@@ -44,6 +51,13 @@ for r in d:
         rec['omo']['collection_id'] = mapdata['collection_id']
         rec['omo']['image_url'] = mapdata['image_url']
         rec['omo']['is_reviewed'] = mapdata['is_reviewed']
+        iiifdata = getDimensions(mapdata['image_url'])
+        if iiifdata:
+            rec['omo']['width']=iiifdata['width']
+            rec['omo']['height']=iiifdata['height']
+        else:
+            rec['omo']['width']=0
+            rec['omo']['height']=0
         grdata = getGeoReference(mapdata['id'])
         print(grdata)
         if grdata:

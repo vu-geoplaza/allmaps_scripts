@@ -1,0 +1,25 @@
+{
+    "@context": [
+        "http://geojson.org/geojson-ld/geojson-context.jsonld",
+        "http://iiif.io/api/presentation/3/context.json"
+    ],
+    "body": {
+        "features": [],
+        "type": "featureCollection"
+    },
+    "target": {
+        "selector": {
+            "type": "SvgSelector",
+            "value": "<svg width=\"2642\" height=\"1640\"><polygon points=\"2427,441 2443,491 2449,1251 2436,1300 2404,1335 2354,1355 180,1377 125,1366 84,1328 69,1285 63,512 80,464 117,430 175,417 2342,394 2394,410 2427,441\" /></svg>"
+        },
+        "service": [
+            {
+                "@id": "https://vu.contentdm.oclc.org/digital/iiif/krt/1697",
+                "profile": "http://iiif.io/api/image/2/level2.json",
+                "type": "ImageService2"
+            }
+        ],
+        "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/1697"
+    },
+    "type": "Annotation"
+}
