@@ -25,10 +25,10 @@ def createAnnotation(rec):
 
     points = []
     for coord in rec['georeferences'][0]['cutline']:
-        points.append(f'{round(coord[0] * shrink_factor)},{round(coord[1] * shrink_factor)}')
+        points.append(f'{int(round(coord[0] * shrink_factor))},{int(round(coord[1] * shrink_factor))}')
     cutline_str = ' '.join(points)
-    image_width = round(rec["omo"]["width"] * shrink_factor)
-    image_height = round(rec["omo"]["height"]) * shrink_factor
+    image_width = int(round(rec["omo"]["width"] * shrink_factor))
+    image_height = int(round(rec["omo"]["height"] * shrink_factor))
     d['target']['selector'][
         'value'] = f'<svg width=\"{image_width}\" height=\"{image_height}\"><polygon points=\"{cutline_str}\" /></svg>'
 
@@ -39,7 +39,7 @@ def createAnnotation(rec):
         f = {}
         f['type'] = 'Feature'
         f['properties'] = {}
-        f['properties']['pixelCoords'] = [cp['pixel'][0] * shrink_factor, cp['pixel'][1] * shrink_factor]
+        f['properties']['pixelCoords'] = [int(round(cp['pixel'][0] * shrink_factor)), int(round(cp['pixel'][1] * shrink_factor))]
         f['geometry'] = {}
         f['geometry']['type'] = 'Point'
         f['geometry']['coordinates'] = cp['location']
