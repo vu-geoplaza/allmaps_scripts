@@ -1,25 +1,25 @@
 {
+    "type": "Annotation",
     "@context": [
         "http://geojson.org/geojson-ld/geojson-context.jsonld",
         "http://iiif.io/api/presentation/3/context.json"
     ],
-    "body": {
-        "features": [],
-        "type": "featureCollection"
-    },
     "target": {
-        "selector": {
-            "type": "SvgSelector",
-            "value": "<svg width=\"7657\" height=\"6138\"><polygon points=\"3759,5479 3706,813 409,819 452,5464 3759,5479\" /></svg>"
-        },
+        "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/138",
         "service": [
             {
                 "@id": "https://vu.contentdm.oclc.org/digital/iiif/krt/138",
-                "profile": "http://iiif.io/api/image/2/level2.json",
-                "type": "ImageService2"
+                "type": "ImageService2",
+                "profile": "http://iiif.io/api/image/2/level2.json"
             }
         ],
-        "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/138"
+        "selector": {
+            "type": "SvgSelector",
+            "value": "<svg width=\"7657\" height=\"6138.0\"><polygon points=\"3759,5479 3706,813 409,819 452,5464 3759,5479\" /></svg>"
+        }
     },
-    "type": "Annotation"
+    "body": {
+        "type": "featureCollection",
+        "features": []
+    }
 }

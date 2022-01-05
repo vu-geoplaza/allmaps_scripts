@@ -26,6 +26,7 @@ def getGeoReference(id):
         data = json.loads(response.content)
     return data
 
+
 def getDimensions(iiif_url):
     data = False
     response = requests.get(iiif_url, headers={})
@@ -33,6 +34,7 @@ def getDimensions(iiif_url):
     if response.status_code == 200:
         data = json.loads(response.content)
     return data
+
 
 fin = open('cdm_export.json', 'r')
 d = json.load(fin)
@@ -53,17 +55,24 @@ for r in d:
         rec['omo']['is_reviewed'] = mapdata['is_reviewed']
         iiifdata = getDimensions(mapdata['image_url'])
         if iiifdata:
-            rec['omo']['width']=iiifdata['width']
-            rec['omo']['height']=iiifdata['height']
+            rec['omo']['width'] = iiifdata['width']
+            rec['omo']['height'] = iiifdata['height']
         else:
-            rec['omo']['width']=0
-            rec['omo']['height']=0
+            rec['omo']['width'] = 0
+            rec['omo']['height'] = 0
+        cdmiiifdata = getDimensions(r['iiif'])
+        if iiifdata:
+            rec['cdm']['width'] = iiifdata['width']
+            rec['cdm']['height'] = iiifdata['height']
+        else:
+            rec['cdm']['width'] = 0
+            rec['cdm']['height'] = 0
         grdata = getGeoReference(mapdata['id'])
         print(grdata)
         if grdata:
             rec['omo']['num_georeferences'] = len(grdata['items'])
             rec['georeferences'] = []
-            ref={}
+            ref = {}
             for item in grdata['items']:
                 ref['id'] = item['id']
                 ref['cutline'] = item['cutline']
@@ -76,7 +85,6 @@ for r in d:
         out[r['dmrecord']] = rec
     else:
         notfound += 1
-
 
 with open('ubvu_maps.json', 'w') as f:
     json.dump(out, f, indent=4, sort_keys=True)
