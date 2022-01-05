@@ -62,8 +62,8 @@ for r in d:
             rec['omo']['height'] = 0
         cdmiiifdata = getDimensions(r['iiif'])
         if iiifdata:
-            rec['cdm']['width'] = iiifdata['width']
-            rec['cdm']['height'] = iiifdata['height']
+            rec['cdm']['width'] = cdmiiifdata['width']
+            rec['cdm']['height'] = cdmiiifdata['height']
         else:
             rec['cdm']['width'] = 0
             rec['cdm']['height'] = 0
