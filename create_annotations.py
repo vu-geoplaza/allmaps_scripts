@@ -39,13 +39,14 @@ def createAnnotation(rec):
         f = {}
         f['type'] = 'Feature'
         f['properties'] = {}
-        f['properties']['pixelCoords'] = [int(round(cp['pixel'][0] * shrink_factor)), int(round(cp['pixel'][1] * shrink_factor))]
+        f['properties']['pixelCoords'] = [int(round(cp['pixel'][0] * shrink_factor)),
+                                          int(round(cp['pixel'][1] * shrink_factor))]
         f['geometry'] = {}
         f['geometry']['type'] = 'Point'
         f['geometry']['coordinates'] = cp['location']
         d['body']['features'].append(f)
-    print(d)
     return d
+
 
 fin = open('ubvu_maps.json', 'r')
 data = json.load(fin)
@@ -57,5 +58,9 @@ for id in data:
     print(id)
     if data[id]['omo']['num_georeferences'] > 0:
         annot = createAnnotation(data[id])
-        with open(f'annotations/ubvu_{id}.json', 'w') as f:
+        if data[id]['omo']['is_reviewed']:
+            folder = 'annotations'
+        else:
+            folder = 'annotations_unreviewed'
+        with open(f'{folder}/ubvu_{id}.json', 'w') as f:
             json.dump(annot, f, indent=4)
