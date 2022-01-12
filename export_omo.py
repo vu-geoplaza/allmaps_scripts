@@ -1,6 +1,4 @@
 import requests, requests_cache, json
-from collections import defaultdict
-import pandas as pd
 from config import OMO_KEY, OMO_URL
 
 requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
@@ -73,10 +71,7 @@ for r in d:
             rec['omo']['num_georeferences'] = len(grdata['items'])
             rec['georeferences'] = []
             for item in grdata['items']:
-                ref = {}
-                ref['id'] = item['id']
-                ref['cutline'] = item['cutline']
-                ref['gcps'] = item['gcps']
+                ref = {'id': item['id'], 'cutline': item['cutline'], 'gcps': item['gcps']}
                 rec['georeferences'].append(ref)
             grfound += 1
         else:
