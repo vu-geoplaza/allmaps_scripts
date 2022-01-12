@@ -72,8 +72,8 @@ for r in d:
         if grdata:
             rec['omo']['num_georeferences'] = len(grdata['items'])
             rec['georeferences'] = []
-            ref = {}
             for item in grdata['items']:
+                ref = {}
                 ref['id'] = item['id']
                 ref['cutline'] = item['cutline']
                 ref['gcps'] = item['gcps']
