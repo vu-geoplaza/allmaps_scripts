@@ -84,10 +84,6 @@ def store(annot, is_reviewed):
 
 fin = open('ubvu_maps.json', 'r')
 data = json.load(fin)
-out = {}
-found = 0
-grfound = 0
-notfound = 0
 for id in data:
     print(id)
     if data[id]['omo']['num_georeferences'] == 1:
