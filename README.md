@@ -18,3 +18,6 @@ Test by using the raw url to a json annotation (for example https://raw.githubus
 - https://viewer.allmaps.org/#data=data%3Atext%2Fx-url%2C+https%3A%2F%2Fraw.githubusercontent.com%2Fvu-geoplaza%2Fallmaps_scripts%2Fmain%2Fannotations%2Fubvu_2450.json
 - https://viewer.allmaps.org/#data=data%3Atext%2Fx-url%2C+https%3A%2F%2Fraw.githubusercontent.com%2Fvu-geoplaza%2Fallmaps_scripts%2Fmain%2Fannotations%2Fubvu_7242.json
 - https://viewer.allmaps.org/#data=data%3Atext%2Fx-url%2C+https%3A%2F%2Fraw.githubusercontent.com%2Fvu-geoplaza%2Fallmaps_scripts%2Fmain%2Fannotations%2Fubvu_254.json
+
+Example with multiple georeferences:
+https://viewer.allmaps.org/#data=data%3Atext%2Fx-url%2C+https%3A%2F%2Fraw.githubusercontent.com%2Fvu-geoplaza%2Fallmaps_scripts%2Fmain%2Fannotations%2Fubvu_4781.json
