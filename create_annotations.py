@@ -4,44 +4,25 @@ import json
 # https://raw.githubusercontent.com/allmaps/iiif-map-collections/master/georeferencing-annotations/ubvu-cdm21033-krt-2170.json
 
 def createAnnotationPage(rec):
-    d = {}
-    d['type'] = 'AnnotationPage'
-    d['@context'] = [
-        "http://geojson.org/geojson-ld/geojson-context.jsonld",
-        "http://iiif.io/api/presentation/3/context.json"
-    ]
     items = []
     i = 0
     while i < len(rec['georeferences']):
-        print(i, len(rec['georeferences']))
         page = createAnnotation(rec, index=i)
         page['target']['type'] = 'Image'
         page['target']['source'] = f'{page["target"]["source"]}/full/full/0/default.jpg'
         items.append(page)
         i += 1
-    d['items'] = items
-    return d
+
+    return {'type': 'AnnotationPage',
+            '@context': [
+                "http://geojson.org/geojson-ld/geojson-context.jsonld",
+                "http://iiif.io/api/presentation/3/context.json"
+            ],
+            'items': items}
 
 
 def createAnnotation(rec, index=0):
     shrink_factor = rec['cdm']['width'] / rec['omo']['width']  # images in Cdm have been resized!
-    d = {}
-    d['type'] = 'Annotation'
-    d['@context'] = [
-        "http://geojson.org/geojson-ld/geojson-context.jsonld",
-        "http://iiif.io/api/presentation/3/context.json"
-    ]
-    d["motivation"]: "georeference"
-    d['target'] = {}
-    d['target']['source'] = rec['cdm']['iiif']
-    d['target']['service'] = []
-    service = {}
-    service['@id'] = rec['cdm']['iiif']  # wanneer heb je hier meer van?
-    service['type'] = 'ImageService2'
-    service['profile'] = 'http://iiif.io/api/image/2/level2.json'
-    d['target']['service'].append(service)
-    d['target']['selector'] = {}
-    d['target']['selector']['type'] = 'SvgSelector'
 
     points = []
     for coord in rec['georeferences'][index]['cutline']:
@@ -49,23 +30,47 @@ def createAnnotation(rec, index=0):
     cutline_str = ' '.join(points)
     image_width = int(round(rec["omo"]["width"] * shrink_factor))
     image_height = int(round(rec["omo"]["height"] * shrink_factor))
-    d['target']['selector'][
-        'value'] = f'<svg width=\"{image_width}\" height=\"{image_height}\"><polygon points=\"{cutline_str}\" /></svg>'
+    selector = f'<svg width=\"{image_width}\" height=\"{image_height}\"><polygon points=\"{cutline_str}\" /></svg>'
 
-    d['body'] = {}
-    d['body']['type'] = 'featureCollection'
-    d['body']['features'] = []
+    features = []
     for cp in rec['georeferences'][index]['gcps']:
-        f = {}
-        f['type'] = 'Feature'
-        f['properties'] = {}
-        f['properties']['pixelCoords'] = [int(round(cp['pixel'][0] * shrink_factor)),
-                                          int(round(cp['pixel'][1] * shrink_factor))]
-        f['geometry'] = {}
-        f['geometry']['type'] = 'Point'
-        f['geometry']['coordinates'] = cp['location']
-        d['body']['features'].append(f)
-    return d
+        f = {
+            'type': 'Feature',
+            'properties': {
+                'pixelCoords': [int(round(cp['pixel'][0] * shrink_factor)), int(round(cp['pixel'][1] * shrink_factor))]
+            },
+            'geometry': {
+                'type': 'Point',
+                'coordinates': cp['location']
+            }
+        }
+        features.append(f)
+
+    return {
+        "type": "Annotation",
+        "@context": [
+            "http://geojson.org/geojson-ld/geojson-context.jsonld",
+            "http://iiif.io/api/presentation/3/context.json"
+        ],
+        "target": {
+            "source": rec['cdm']['iiif'],
+            "service": [
+                {
+                    '@id': rec['cdm']['iiif'],
+                    'type': 'ImageService2',
+                    'profile': 'http://iiif.io/api/image/2/level2.json'
+                }
+            ],
+            "selector": {
+                "type": "SvgSelector",
+                "value": selector
+            }
+        },
+        "body": {
+            "type": "featureCollection",
+            "features": features
+        }
+    }
 
 
 def store(annot, is_reviewed):
