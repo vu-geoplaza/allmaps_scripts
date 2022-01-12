@@ -3,7 +3,27 @@ import json
 
 # https://raw.githubusercontent.com/allmaps/iiif-map-collections/master/georeferencing-annotations/ubvu-cdm21033-krt-2170.json
 
-def createAnnotation(rec):
+def createAnnotationPage(rec):
+    d = {}
+    d['type'] = 'AnnotationPage'
+    d['@context'] = [
+        "http://geojson.org/geojson-ld/geojson-context.jsonld",
+        "http://iiif.io/api/presentation/3/context.json"
+    ]
+    items = []
+    i = 0
+    while i < len(rec['georeferences']):
+        print(i, len(rec['georeferences']))
+        page = createAnnotation(rec, index=i)
+        page['target']['type'] = 'Image'
+        page['target']['source'] = f'{page["target"]["source"]}/full/full/0/default.jpg'
+        items.append(page)
+        i += 1
+    d['items'] = items
+    return d
+
+
+def createAnnotation(rec, index=0):
     shrink_factor = rec['cdm']['width'] / rec['omo']['width']  # images in Cdm have been resized!
     d = {}
     d['type'] = 'Annotation'
@@ -24,7 +44,7 @@ def createAnnotation(rec):
     d['target']['selector']['type'] = 'SvgSelector'
 
     points = []
-    for coord in rec['georeferences'][0]['cutline']:
+    for coord in rec['georeferences'][index]['cutline']:
         points.append(f'{int(round(coord[0] * shrink_factor))},{int(round(coord[1] * shrink_factor))}')
     cutline_str = ' '.join(points)
     image_width = int(round(rec["omo"]["width"] * shrink_factor))
@@ -35,7 +55,7 @@ def createAnnotation(rec):
     d['body'] = {}
     d['body']['type'] = 'featureCollection'
     d['body']['features'] = []
-    for cp in rec['georeferences'][0]['gcps']:
+    for cp in rec['georeferences'][index]['gcps']:
         f = {}
         f['type'] = 'Feature'
         f['properties'] = {}
@@ -48,6 +68,15 @@ def createAnnotation(rec):
     return d
 
 
+def store(annot, is_reviewed):
+    if is_reviewed:
+        folder = 'annotations'
+    else:
+        folder = 'annotations_unreviewed'
+    with open(f'{folder}/ubvu_{id}.json', 'w') as f:
+        json.dump(annot, f, indent=4)
+
+
 fin = open('ubvu_maps.json', 'r')
 data = json.load(fin)
 out = {}
@@ -56,11 +85,9 @@ grfound = 0
 notfound = 0
 for id in data:
     print(id)
-    if data[id]['omo']['num_georeferences'] > 0:
+    if data[id]['omo']['num_georeferences'] == 1:
         annot = createAnnotation(data[id])
-        if data[id]['omo']['is_reviewed']:
-            folder = 'annotations'
-        else:
-            folder = 'annotations_unreviewed'
-        with open(f'{folder}/ubvu_{id}.json', 'w') as f:
-            json.dump(annot, f, indent=4)
+        store(annot, data[id]['omo']['is_reviewed'])
+    elif data[id]['omo']['num_georeferences'] > 1:
+        annot = createAnnotationPage(data[id])
+        store(annot, data[id]['omo']['is_reviewed'])
