@@ -9,7 +9,6 @@ def getMap(externalid):
 
     response = requests.get(f'{OMO_URL}/maps/external/{externalid}',
                             headers={'Authorization': f'Token {OMO_KEY}', 'Accept': '*/*'})
-    print(response.status_code)
     if response.status_code == 200:
         data = json.loads(response.content)
     return data
@@ -19,7 +18,6 @@ def getGeoReference(id):
     data = False
     response = requests.get(f'{OMO_URL}/maps/{id}/georeferences',
                             headers={'Authorization': f'Token {OMO_KEY}', 'Accept': '*/*'})
-    print(response.status_code)
     if response.status_code == 200:
         data = json.loads(response.content)
     return data
@@ -28,7 +26,6 @@ def getGeoReference(id):
 def getDimensions(iiif_url):
     data = False
     response = requests.get(iiif_url, headers={})
-    print(response.status_code)
     if response.status_code == 200:
         data = json.loads(response.content)
     return data
@@ -44,7 +41,7 @@ for r in d:
     rec = {}
     mapdata = getMap(r['id'])
     if mapdata:
-        print(mapdata)
+        #print(mapdata)
         rec['cdm'] = r
         rec['omo'] = {}
         rec['omo']['id'] = mapdata['id']
@@ -66,7 +63,7 @@ for r in d:
             rec['cdm']['width'] = 0
             rec['cdm']['height'] = 0
         grdata = getGeoReference(mapdata['id'])
-        print(grdata)
+        #print(grdata)
         if grdata:
             rec['omo']['num_georeferences'] = len(grdata['items'])
             rec['georeferences'] = []

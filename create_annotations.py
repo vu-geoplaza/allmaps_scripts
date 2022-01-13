@@ -73,22 +73,33 @@ def createAnnotation(rec, index=0):
     }
 
 
-def store(annot, is_reviewed):
-    if is_reviewed:
-        folder = 'annotations'
-    else:
-        folder = 'annotations_unreviewed'
+def store(annot, folder):
     with open(f'{folder}/ubvu_{id}.json', 'w') as f:
         json.dump(annot, f, indent=4)
 
 
 fin = open('ubvu_maps.json', 'r')
 data = json.load(fin)
+count_unreviewed = 0
+count_reviewed = 0
+count_unreferenced =0
 for id in data:
-    print(id)
-    if data[id]['omo']['num_georeferences'] == 1:
-        annot = createAnnotation(data[id])
-        store(annot, data[id]['omo']['is_reviewed'])
-    elif data[id]['omo']['num_georeferences'] > 1:
-        annot = createAnnotationPage(data[id])
-        store(annot, data[id]['omo']['is_reviewed'])
+    num = data[id]['omo']['num_georeferences']
+    if num > 0:
+        reviewed=data[id]['omo']['is_reviewed']
+        if data[id]['omo']['num_georeferences'] == 1:
+            annot = createAnnotation(data[id])
+        elif data[id]['omo']['num_georeferences'] > 1:
+            annot = createAnnotationPage(data[id])
+
+        if reviewed:
+            folder = 'annotations'
+            count_reviewed += 1
+        else:
+            folder = 'annotations_unreviewed'
+            count_unreviewed += 1
+        store(annot, folder)
+    else:
+        count_unreferenced += 1
+
+print(f'{count_reviewed} reviewed annotations, {count_unreviewed} unreviewed annotations, {count_unreferenced} maps not georeferenced')
