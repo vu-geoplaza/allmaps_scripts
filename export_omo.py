@@ -1,7 +1,7 @@
 import requests, requests_cache, json
 from config import OMO_KEY, OMO_URL
 
-requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
+#requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
 
 
 def getMap(externalid):
