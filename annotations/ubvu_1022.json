@@ -1,17 +1,15 @@
 {
     "type": "AnnotationPage",
     "@context": [
+        "http://www.w3.org/ns/anno.jsonld",
         "http://geojson.org/geojson-ld/geojson-context.jsonld",
         "http://iiif.io/api/presentation/3/context.json"
     ],
     "items": [
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/1022/full/full/0/default.jpg",
                 "service": [
                     {
@@ -22,12 +20,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"3493\" height=\"4292\"><polygon points=\"2288,895 2465,1240 2597,1281 2589,2164 3155,2326 3290,2815 3281,3595 2772,3763 2665,4073 2214,4059 1792,3451 1180,2479 659,2144 424,1731 191,1134 202,612 369,598 526,415 830,414 897,566 1214,669 1254,851 1645,774 1978,973 2288,895\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"3493\" height=\"4292\"><polygon points=\"2288,895 2465,1240 2597,1281 2589,2164 3155,2326 3290,2815 3281,3595 2772,3763 2665,4073 2214,4059 1792,3451 1180,2479 659,2144 424,1731 191,1134 202,612 369,598 526,415 830,414 897,566 1214,669 1254,851 1645,774 1978,973\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -146,11 +143,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/1022/full/full/0/default.jpg",
                 "service": [
                     {
@@ -161,12 +155,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"3493\" height=\"4292\"><polygon points=\"196,3324 861,3323 856,4061 369,4057 370,3925 305,3852 191,3851 196,3324\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"3493\" height=\"4292\"><polygon points=\"196,3324 861,3323 856,4061 369,4057 370,3925 305,3852 191,3851\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",

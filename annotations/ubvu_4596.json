@@ -1,10 +1,12 @@
 {
     "type": "Annotation",
-    "@context": [
-        "http://geojson.org/geojson-ld/geojson-context.jsonld",
-        "http://iiif.io/api/presentation/3/context.json"
-    ],
     "target": {
+        "type": "Image",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "http://geojson.org/geojson-ld/geojson-context.jsonld",
+            "http://iiif.io/api/presentation/3/context.json"
+        ],
         "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/4596",
         "service": [
             {
@@ -15,11 +17,11 @@
         ],
         "selector": {
             "type": "SvgSelector",
-            "value": "<svg width=\"2903\" height=\"2583\"><polygon points=\"2390,473 2392,790 2441,784 2440,942 2396,947 2412,2158 982,2169 984,2216 951,2219 940,2164 873,2164 866,2207 831,2206 823,2169 714,2165 724,2212 690,2214 682,2165 472,2157 472,1983 429,1991 474,1899 474,1778 431,1780 431,1614 479,1616 474,1133 431,1124 426,1045 476,1047 475,822 437,817 442,728 483,733 474,486 528,488 523,440 2007,434 2009,475 2390,473\" /></svg>"
+            "value": "<svg width=\"2903\" height=\"2583\"><polygon points=\"2390,473 2392,790 2441,784 2440,942 2396,947 2412,2158 982,2169 984,2216 951,2219 940,2164 873,2164 866,2207 831,2206 823,2169 714,2165 724,2212 690,2214 682,2165 472,2157 472,1983 429,1991 474,1899 474,1778 431,1780 431,1614 479,1616 474,1133 431,1124 426,1045 476,1047 475,822 437,817 442,728 483,733 474,486 528,488 523,440 2007,434 2009,475\" /></svg>"
         }
     },
     "body": {
-        "type": "featureCollection",
+        "type": "FeatureCollection",
         "features": [
             {
                 "type": "Feature",

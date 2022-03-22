@@ -1,17 +1,15 @@
 {
     "type": "AnnotationPage",
     "@context": [
+        "http://www.w3.org/ns/anno.jsonld",
         "http://geojson.org/geojson-ld/geojson-context.jsonld",
         "http://iiif.io/api/presentation/3/context.json"
     ],
     "items": [
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/5940/full/full/0/default.jpg",
                 "service": [
                     {
@@ -22,12 +20,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"2318\" height=\"3235\"><polygon points=\"2183,231 2196,2757 1229,2752 1232,2418 1211,2397 719,2397 723,2298 657,2298 651,1878 553,1846 515,1808 496,1761 167,1761 153,779 146,778 62,656 153,485 141,343 156,233 2183,231\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"2318\" height=\"3235\"><polygon points=\"2183,231 2196,2757 1229,2752 1232,2418 1211,2397 719,2397 723,2298 657,2298 651,1878 553,1846 515,1808 496,1761 167,1761 153,779 146,778 62,656 153,485 141,343 156,233\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -178,11 +175,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/5940/full/full/0/default.jpg",
                 "service": [
                     {
@@ -193,12 +187,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"2318\" height=\"3235\"><polygon points=\"720,2405 1203,2403 1226,2425 1221,2755 719,2753 720,2405\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"2318\" height=\"3235\"><polygon points=\"720,2405 1203,2403 1226,2425 1221,2755 719,2753\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",

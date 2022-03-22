@@ -1,17 +1,15 @@
 {
     "type": "AnnotationPage",
     "@context": [
+        "http://www.w3.org/ns/anno.jsonld",
         "http://geojson.org/geojson-ld/geojson-context.jsonld",
         "http://iiif.io/api/presentation/3/context.json"
     ],
     "items": [
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/3064/full/full/0/default.jpg",
                 "service": [
                     {
@@ -22,12 +20,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"4073,1951 4075,2763 2343,2759 2355,2381 3165,2367 3170,2258 3498,2240 3650,1948 4073,1951\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"4073,1951 4075,2763 2343,2759 2355,2381 3165,2367 3170,2258 3498,2240 3650,1948\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -50,11 +47,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/3064/full/full/0/default.jpg",
                 "service": [
                     {
@@ -65,12 +59,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"2374,1921 2629,1924 2626,1797 3123,1790 3137,2326 2383,2323 2374,1921\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"2374,1921 2629,1924 2626,1797 3123,1790 3137,2326 2383,2323\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -109,11 +102,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/3064/full/full/0/default.jpg",
                 "service": [
                     {
@@ -124,12 +114,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"2350,1690 3627,1681 3781,1359 4061,1359 4054,723 3584,716 3575,295 2354,304 2350,1690\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"2350,1690 3627,1681 3781,1359 4061,1359 4054,723 3584,716 3575,295 2354,304\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -328,11 +317,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/3064/full/full/0/default.jpg",
                 "service": [
                     {
@@ -343,12 +329,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"715,736 1237,738 1320,968 1343,1133 1536,1258 1540,1465 2285,1472 2299,301 722,280 715,736\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"715,736 1237,738 1320,968 1343,1133 1536,1258 1540,1465 2285,1472 2299,301 722,280\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -371,11 +356,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/3064/full/full/0/default.jpg",
                 "service": [
                     {
@@ -386,12 +368,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"707,2777 1731,2782 1816,2483 2280,2471 2282,1765 1388,1747 1393,1529 710,1527 707,2777\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"4710\" height=\"3184\"><polygon points=\"707,2777 1731,2782 1816,2483 2280,2471 2282,1765 1388,1747 1393,1529 710,1527\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": []
             }
         }

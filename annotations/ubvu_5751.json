@@ -1,10 +1,12 @@
 {
     "type": "Annotation",
-    "@context": [
-        "http://geojson.org/geojson-ld/geojson-context.jsonld",
-        "http://iiif.io/api/presentation/3/context.json"
-    ],
     "target": {
+        "type": "Image",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "http://geojson.org/geojson-ld/geojson-context.jsonld",
+            "http://iiif.io/api/presentation/3/context.json"
+        ],
         "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/5751",
         "service": [
             {
@@ -15,11 +17,11 @@
         ],
         "selector": {
             "type": "SvgSelector",
-            "value": "<svg width=\"4452\" height=\"1684\"><polygon points=\"4011,52 4021,797 3660,797 3669,1623 701,1642 658,1666 598,1645 451,1636 443,1545 385,1471 448,1387 441,852 758,840 774,79 1115,73 1187,45 1244,68 1318,15 1420,59 3289,59 3350,39 3428,57 4011,52\" /></svg>"
+            "value": "<svg width=\"4452\" height=\"1684\"><polygon points=\"4011,52 4021,797 3660,797 3669,1623 701,1642 658,1666 598,1645 451,1636 443,1545 385,1471 448,1387 441,852 758,840 774,79 1115,73 1187,45 1244,68 1318,15 1420,59 3289,59 3350,39 3428,57\" /></svg>"
         }
     },
     "body": {
-        "type": "featureCollection",
+        "type": "FeatureCollection",
         "features": [
             {
                 "type": "Feature",

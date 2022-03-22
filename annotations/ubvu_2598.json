@@ -1,17 +1,15 @@
 {
     "type": "AnnotationPage",
     "@context": [
+        "http://www.w3.org/ns/anno.jsonld",
         "http://geojson.org/geojson-ld/geojson-context.jsonld",
         "http://iiif.io/api/presentation/3/context.json"
     ],
     "items": [
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/2598/full/full/0/default.jpg",
                 "service": [
                     {
@@ -22,12 +20,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"3269\" height=\"4587\"><polygon points=\"3205,94 3169,4493 60,4457 92,1889 94,1697 1361,1689 1329,97 3205,94\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"3269\" height=\"4587\"><polygon points=\"3205,94 3169,4493 60,4457 92,1889 94,1697 1361,1689 1329,97\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": [
                     {
                         "type": "Feature",
@@ -162,11 +159,8 @@
         },
         {
             "type": "Annotation",
-            "@context": [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
             "target": {
+                "type": "Image",
                 "source": "https://vu.contentdm.oclc.org/digital/iiif/krt/2598/full/full/0/default.jpg",
                 "service": [
                     {
@@ -177,12 +171,11 @@
                 ],
                 "selector": {
                     "type": "SvgSelector",
-                    "value": "<svg width=\"3269\" height=\"4587\"><polygon points=\"93,88 1266,101 1293,1602 79,1656 93,88\" /></svg>"
-                },
-                "type": "Image"
+                    "value": "<svg width=\"3269\" height=\"4587\"><polygon points=\"93,88 1266,101 1293,1602 79,1656\" /></svg>"
+                }
             },
             "body": {
-                "type": "featureCollection",
+                "type": "FeatureCollection",
                 "features": []
             }
         }
