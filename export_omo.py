@@ -1,7 +1,7 @@
-import requests, requests_cache, json
+import requests, json, requests_cache
 from config import OMO_KEY, OMO_URL
 
-#requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
+requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
 
 
 def getMap(externalid):
@@ -63,13 +63,18 @@ for r in d:
             rec['cdm']['width'] = 0
             rec['cdm']['height'] = 0
         grdata = getGeoReference(mapdata['id'])
-        #print(grdata)
         if grdata:
-            rec['omo']['num_georeferences'] = len(grdata['items'])
+            num = 0
+            rec['omo']['num_items'] = len(grdata['items'])
             rec['georeferences'] = []
             for item in grdata['items']:
-                ref = {'id': item['id'], 'cutline': item['cutline'], 'gcps': item['gcps']}
-                rec['georeferences'].append(ref)
+                if len(item['gcps'])>0:
+                    ref = {'id': item['id'], 'cutline': item['cutline'], 'gcps': item['gcps']}
+                    rec['georeferences'].append(ref)
+                    num += 1
+                else:
+                    print(mapdata['id'])
+            rec['omo']['num_georeferences'] = num
             grfound += 1
         else:
             rec['omo']['num_georeferences'] = 0
