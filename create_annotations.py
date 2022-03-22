@@ -1,31 +1,32 @@
 import json
 
+CONTEXT = [
+    "http://www.w3.org/ns/anno.jsonld",
+    "http://geojson.org/geojson-ld/geojson-context.jsonld",
+    "http://iiif.io/api/presentation/3/context.json"
+]
 
-# https://raw.githubusercontent.com/allmaps/iiif-map-collections/master/georeferencing-annotations/ubvu-cdm21033-krt-2170.json
 
 def createAnnotationPage(rec):
     items = []
     i = 0
     while i < len(rec['georeferences']):
-        page = createAnnotation(rec, index=i)
+        page = createAnnotation(rec, index=i, is_page=True)
         page['target']['type'] = 'Image'
         page['target']['source'] = f'{page["target"]["source"]}/full/full/0/default.jpg'
         items.append(page)
         i += 1
 
     return {'type': 'AnnotationPage',
-            '@context': [
-                "http://geojson.org/geojson-ld/geojson-context.jsonld",
-                "http://iiif.io/api/presentation/3/context.json"
-            ],
+            '@context': CONTEXT,
             'items': items}
 
 
-def createAnnotation(rec, index=0):
+def createAnnotation(rec, index=0, is_page=False):
     shrink_factor = rec['cdm']['width'] / rec['omo']['width']  # images in Cdm have been resized!
 
     points = []
-    for coord in rec['georeferences'][index]['cutline']:
+    for coord in rec['georeferences'][index]['cutline'][:-1]:
         points.append(f'{int(round(coord[0] * shrink_factor))},{int(round(coord[1] * shrink_factor))}')
     cutline_str = ' '.join(points)
     image_width = int(round(rec["omo"]["width"] * shrink_factor))
@@ -46,13 +47,11 @@ def createAnnotation(rec, index=0):
         }
         features.append(f)
 
-    return {
+    data = {
         "type": "Annotation",
-        "@context": [
-            "http://geojson.org/geojson-ld/geojson-context.jsonld",
-            "http://iiif.io/api/presentation/3/context.json"
-        ],
         "target": {
+            "type": "Image",
+            **({'@context': CONTEXT} if not is_page else {}),
             "source": rec['cdm']['iiif'],
             "service": [
                 {
@@ -67,10 +66,11 @@ def createAnnotation(rec, index=0):
             }
         },
         "body": {
-            "type": "featureCollection",
+            "type": "FeatureCollection",
             "features": features
         }
     }
+    return data
 
 
 def store(annot, folder):
@@ -82,11 +82,11 @@ fin = open('ubvu_maps.json', 'r')
 data = json.load(fin)
 count_unreviewed = 0
 count_reviewed = 0
-count_unreferenced =0
+count_unreferenced = 0
 for id in data:
     num = data[id]['omo']['num_georeferences']
     if num > 0:
-        reviewed=data[id]['omo']['is_reviewed']
+        reviewed = data[id]['omo']['is_reviewed']
         if data[id]['omo']['num_georeferences'] == 1:
             annot = createAnnotation(data[id])
         elif data[id]['omo']['num_georeferences'] > 1:
@@ -102,4 +102,5 @@ for id in data:
     else:
         count_unreferenced += 1
 
-print(f'{count_reviewed} reviewed annotations, {count_unreviewed} unreviewed annotations, {count_unreferenced} maps not georeferenced')
+print(
+    f'{count_reviewed} reviewed annotations, {count_unreviewed} unreviewed annotations, {count_unreferenced} maps not georeferenced')
