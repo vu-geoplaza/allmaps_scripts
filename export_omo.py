@@ -1,7 +1,7 @@
 import requests, json, requests_cache
 from config import OMO_KEY, OMO_URL
 
-#requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
+requests_cache.install_cache('requests_cache', allowable_codes=(200, 404))
 
 
 def getMap(externalid):
@@ -82,6 +82,7 @@ for r in d:
         out[r['dmrecord']] = rec
     else:
         notfound += 1
+    print(found)
 
 with open('ubvu_maps.json', 'w') as f:
     json.dump(out, f, indent=4, sort_keys=True)

@@ -23,7 +23,11 @@ def createAnnotationPage(rec):
 
 
 def createAnnotation(rec, index=0, is_page=False):
-    shrink_factor = rec['cdm']['width'] / rec['omo']['width']  # images in Cdm have been resized!
+    print(rec['cdm']['dmrecord'])
+    if rec['omo']['width'] > 0: #dmrecord 2388!!
+        shrink_factor = rec['cdm']['width'] / rec['omo']['width']  # images in Cdm have been resized!
+    else:
+        shrink_factor = 1
 
     points = []
     for coord in rec['georeferences'][index]['cutline'][:-1]:
