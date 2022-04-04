@@ -1,8 +1,8 @@
 import CdmApi
-import requests_cache, json
+import json
 from config import CDM_REF_BASE, CDM_IIIF_BASE
 
-requests_cache.install_cache('requests_cache')
+#requests_cache.install_cache('requests_che')
 
 
 def sanitize(val):
@@ -67,13 +67,17 @@ for ptr in ptrs:
             else:
                 for node in cpd['node']['node']:  # specific case of tmk, could be deeper
                     if type(node['page']) is dict:  # what a shitty data structure
+                        print('***dict!***')
+                        print(cpd)
                         page = node['page']
                         pageptr = page['pageptr']
                         page_metadata = CdmApi.getMetadata(nick, pageptr)
-                    row = convert(metadata, page_metadata)
-                    if row:
-                        data.append(row)
+                        row = convert(metadata, page_metadata)
+                        if row:
+                            data.append(row)
                     else:
+                        print('***NOT dict!***')
+                        print(cpd)
                         for page in node['page']:
                             pageptr = page['pageptr']
                             page_metadata = CdmApi.getMetadata(nick, pageptr)
