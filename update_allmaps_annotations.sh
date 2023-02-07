@@ -1,8 +1,8 @@
 #!/bin/bash
 today=$(date +"%Y-%m-%d")
-cd ~/allmaps_scripts
+cd ~/scripts/allmaps_scripts
 git pull
-source ~/geo_venv/bin/activate
+source ~/scripts_venv/bin/activate
 python export_omo.py
 rm -f annotations_unreviewed/*
 rm -f annotations/*
